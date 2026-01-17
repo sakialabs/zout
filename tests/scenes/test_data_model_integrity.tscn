@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8j5m3n2p4q1r"]
+
+[ext_resource type="Script" path="res://tests/test_data_model_integrity.gd" id="1_test_data"]
+
+[node name="TestDataModelIntegrity" type="Node"]
+script = ExtResource("1_test_data")

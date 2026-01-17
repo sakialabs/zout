@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8yv7qm3xnw8r"]
+
+[ext_resource type="Script" path="res://tests/integration/test_practice_mode_loop.gd" id="1_test"]
+
+[node name="TestPracticeModeLoop" type="Node"]
+script = ExtResource("1_test")

@@ -1,0 +1,1302 @@
+[gd_scene load_steps=12 format=3 uid="uid://c8yv3qxm7n8wd"]
+
+[ext_resource type="Script" path="res://scripts/practice_mode.gd" id="1_practice"]
+[ext_resource type="Script" path="res://scripts/moving_cars.gd" id="2_moving_cars"]
+[ext_resource type="Script" path="res://scripts/moving_clouds.gd" id="3_moving_clouds"]
+[ext_resource type="Script" path="res://scripts/parked_cars.gd" id="4_parked_cars"]
+[ext_resource type="Script" path="res://scripts/goal_net.gd" id="5_goal_net"]
+[ext_resource type="Script" path="res://scripts/building_shadows.gd" id="6_building_shadows"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pitch"]
+size = Vector2(200, 120)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pitch"]
+albedo_color = Color(0.28, 0.58, 0.28, 1)
+roughness = 0.95
+normal_enabled = true
+normal_scale = 0.5
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grass_dark"]
+albedo_color = Color(0.22, 0.48, 0.22, 1)
+roughness = 1.0
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grass_light"]
+albedo_color = Color(0.35, 0.65, 0.3, 1)
+roughness = 0.98
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pitch"]
+size = Vector3(200, 0.1, 120)
+
+[sub_resource type="BoxMesh" id="BoxMesh_goal"]
+size = Vector3(11.0, 3.66, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_goal"]
+albedo_color = Color(1, 1, 1, 0.5)
+transparency = 1
+metallic = 0.0
+roughness = 0.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_ball"]
+radius = 0.3
+height = 0.6
+radial_segments = 32
+rings = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ball"]
+albedo_color = Color(0.92, 0.92, 0.92, 1)
+metallic = 0.05
+metallic_specular = 0.6
+roughness = 0.25
+rim_enabled = true
+rim = 0.3
+rim_tint = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ball_panel"]
+albedo_color = Color(0.15, 0.15, 0.15, 1)
+metallic = 0.05
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_swoosh"]
+albedo_color = Color(0.05, 0.05, 0.05, 1)
+metallic = 0.0
+roughness = 0.4
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ball"]
+friction = 0.8
+bounce = 0.3
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ball"]
+radius = 0.3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_goal"]
+size = Vector3(11.0, 3.66, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tree_trunk"]
+albedo_color = Color(0.35, 0.25, 0.15, 1)
+metallic = 0.0
+roughness = 0.9
+ao_enabled = true
+ao_light_affect = 0.7
+rim_enabled = true
+rim = 0.15
+rim_tint = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tree_leaves"]
+albedo_color = Color(0.25, 0.7, 0.3, 1)
+metallic = 0.0
+roughness = 0.98
+ao_enabled = true
+ao_light_affect = 0.5
+rim_enabled = true
+rim = 0.2
+rim_tint = 0.5
+shading_mode = 0
+specular_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tree_leaves_shadowed"]
+albedo_color = Color(0.18, 0.55, 0.22, 1)
+metallic = 0.0
+roughness = 0.98
+ao_enabled = true
+ao_light_affect = 0.6
+rim_enabled = true
+rim = 0.15
+rim_tint = 0.4
+shading_mode = 0
+specular_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tree_leaves_lit"]
+albedo_color = Color(0.32, 0.82, 0.38, 1)
+metallic = 0.0
+roughness = 0.98
+ao_enabled = true
+ao_light_affect = 0.4
+rim_enabled = true
+rim = 0.25
+rim_tint = 0.6
+shading_mode = 0
+specular_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_building"]
+albedo_color = Color(0.75, 0.7, 0.65, 1)
+metallic = 0.0
+roughness = 0.85
+ao_enabled = true
+ao_light_affect = 0.6
+rim_enabled = true
+rim = 0.12
+rim_tint = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_windows"]
+albedo_color = Color(0.3, 0.4, 0.5, 1)
+metallic = 0.3
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bench"]
+albedo_color = Color(0.4, 0.3, 0.2, 1)
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fence"]
+albedo_color = Color(0.3, 0.3, 0.3, 1)
+metallic = 0.6
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pavement"]
+albedo_color = Color(0.3, 0.3, 0.3, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_car_red"]
+albedo_color = Color(0.8, 0.1, 0.1, 1)
+metallic = 0.7
+roughness = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_car_blue"]
+albedo_color = Color(0.1, 0.2, 0.7, 1)
+metallic = 0.7
+roughness = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_car_white"]
+albedo_color = Color(0.9, 0.9, 0.9, 1)
+metallic = 0.6
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_car_black"]
+albedo_color = Color(0.1, 0.1, 0.1, 1)
+metallic = 0.8
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_car_silver"]
+albedo_color = Color(0.65, 0.65, 0.7, 1)
+metallic = 0.9
+roughness = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sun"]
+albedo_color = Color(1, 0.95, 0.7, 1)
+emission_enabled = true
+emission = Color(1, 0.85, 0.3, 1)
+emission_energy_multiplier = 3.5
+metallic = 0.0
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cloud"]
+albedo_color = Color(0.95, 0.95, 0.98, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_building_tan"]
+albedo_color = Color(0.85, 0.75, 0.6, 1)
+metallic = 0.0
+roughness = 0.85
+ao_enabled = true
+ao_light_affect = 0.6
+rim_enabled = true
+rim = 0.12
+rim_tint = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_building_gray"]
+albedo_color = Color(0.6, 0.6, 0.62, 1)
+metallic = 0.0
+roughness = 0.8
+ao_enabled = true
+ao_light_affect = 0.65
+rim_enabled = true
+rim = 0.13
+rim_tint = 0.35
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_building_brown"]
+albedo_color = Color(0.55, 0.45, 0.35, 1)
+metallic = 0.0
+roughness = 0.88
+ao_enabled = true
+ao_light_affect = 0.7
+rim_enabled = true
+rim = 0.11
+rim_tint = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_goal_post"]
+albedo_color = Color(1, 1, 1, 1)
+metallic = 0.0
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_goal_backdrop"]
+albedo_color = Color(0.15, 0.35, 0.2, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_building_distant"]
+albedo_color = Color(0.5, 0.5, 0.52, 1)
+metallic = 0.0
+roughness = 0.9
+ao_enabled = true
+ao_light_affect = 0.4
+rim_enabled = true
+rim = 0.08
+rim_tint = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_building_mid_distant"]
+albedo_color = Color(0.58, 0.58, 0.6, 1)
+metallic = 0.0
+roughness = 0.87
+ao_enabled = true
+ao_light_affect = 0.5
+rim_enabled = true
+rim = 0.1
+rim_tint = 0.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_road"]
+albedo_color = Color(0.35, 0.35, 0.37, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yellow"]
+albedo_color = Color(1.0, 0.9, 0.0, 1)
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_white_line"]
+albedo_color = Color(0.95, 0.95, 0.95, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_red_light"]
+albedo_color = Color(1.0, 0.1, 0.1, 1)
+emission_enabled = true
+emission = Color(1.0, 0.0, 0.0, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_green_light"]
+albedo_color = Color(0.1, 1.0, 0.1, 1)
+emission_enabled = true
+emission = Color(0.0, 1.0, 0.0, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tree_trunk_distant"]
+albedo_color = Color(0.45, 0.38, 0.3, 1)
+metallic = 0.0
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tree_leaves_distant"]
+albedo_color = Color(0.5, 0.75, 0.55, 1)
+metallic = 0.0
+roughness = 0.98
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_trunk"]
+top_radius = 0.3
+bottom_radius = 0.35
+height = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_leaves"]
+radius = 2.0
+height = 4.0
+
+[sub_resource type="Environment" id="Environment_default"]
+background_mode = 1
+background_color = Color(0.5, 0.7, 0.95, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.5
+ambient_light_energy = 0.7
+tonemap_mode = 2
+tonemap_exposure = 1.1
+
+[node name="PracticeMode" type="Node3D"]
+script = ExtResource("1_practice")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 20, 0)
+light_color = Color(1, 0.98, 0.95, 1)
+light_energy = 1.0
+shadow_enabled = true
+shadow_bias = 0.1
+
+[node name="Pitch" type="Node3D" parent="."]
+
+[node name="Base" type="MeshInstance3D" parent="Pitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_pitch")
+surface_material_override/0 = SubResource("StandardMaterial3D_pitch")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Pitch/Base"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pitch/Base/StaticBody3D"]
+shape = SubResource("BoxShape3D_pitch")
+
+[node name="Stripe1" type="CSGBox3D" parent="Pitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, -30)
+use_collision = false
+size = Vector3(200, 0.01, 10)
+material = SubResource("StandardMaterial3D_grass_dark")
+
+[node name="Stripe2" type="CSGBox3D" parent="Pitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, -15)
+use_collision = false
+size = Vector3(200, 0.01, 10)
+material = SubResource("StandardMaterial3D_grass_dark")
+
+[node name="Stripe3" type="CSGBox3D" parent="Pitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 5)
+use_collision = false
+size = Vector3(200, 0.01, 10)
+material = SubResource("StandardMaterial3D_grass_dark")
+
+[node name="Stripe4" type="CSGBox3D" parent="Pitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 20)
+use_collision = false
+size = Vector3(200, 0.01, 10)
+material = SubResource("StandardMaterial3D_grass_dark")
+
+[node name="Stripe5" type="CSGBox3D" parent="Pitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 35)
+use_collision = false
+size = Vector3(200, 0.01, 10)
+material = SubResource("StandardMaterial3D_grass_light")
+
+[node name="Stripe6" type="CSGBox3D" parent="Pitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 50)
+use_collision = false
+size = Vector3(200, 0.01, 10)
+material = SubResource("StandardMaterial3D_grass_light")
+
+[node name="Goal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 12)
+monitoring = true
+monitorable = true
+
+[node name="Net" type="MeshInstance3D" parent="Goal"]
+mesh = SubResource("BoxMesh_goal")
+surface_material_override/0 = SubResource("StandardMaterial3D_goal")
+script = ExtResource("5_goal_net")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goal"]
+shape = SubResource("BoxShape3D_goal")
+
+[node name="LeftPost" type="CSGBox3D" parent="Goal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0, 0)
+size = Vector3(0.3, 3.66, 0.3)
+material = SubResource("StandardMaterial3D_goal_post")
+
+[node name="RightPost" type="CSGBox3D" parent="Goal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 0)
+size = Vector3(0.3, 3.66, 0.3)
+material = SubResource("StandardMaterial3D_goal_post")
+
+[node name="Crossbar" type="CSGBox3D" parent="Goal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83, 0)
+size = Vector3(11.0, 0.3, 0.3)
+material = SubResource("StandardMaterial3D_goal_post")
+
+[node name="Ball" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -20)
+mass = 0.43
+physics_material_override = SubResource("PhysicsMaterial_ball")
+gravity_scale = 1.0
+linear_damp = 0.5
+angular_damp = 0.3
+contact_monitor = true
+max_contacts_reported = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
+mesh = SubResource("SphereMesh_ball")
+surface_material_override/0 = SubResource("StandardMaterial3D_ball")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+shape = SubResource("SphereShape3D_ball")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 12, -22)
+fov = 75.0
+size = 1.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 20, 0)
+light_color = Color(1, 0.98, 0.95, 1)
+light_energy = 1.0
+shadow_enabled = true
+shadow_bias = 0.1
+
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="TreeL1" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 0, 35)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeL1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeL1"]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 2, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_shadowed")
+
+[node name="TreeL2" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 25)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeL2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeL2"]
+transform = Transform3D(2.1, 0, 0, 0, 1.5, 0, 0, 0, 2.1, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_lit")
+
+[node name="TreeL3" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, 42)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeL3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeL3"]
+transform = Transform3D(2.2, 0, 0, 0, 1.6, 0, 0, 0, 2.2, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_shadowed")
+
+[node name="TreeL4" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 15)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeL4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeL4"]
+transform = Transform3D(1.9, 0, 0, 0, 1.4, 0, 0, 0, 1.9, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves")
+
+[node name="TreeR1" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 38)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeR1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeR1"]
+transform = Transform3D(2, 0, 0, 0, 1.5, 0, 0, 0, 2, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_lit")
+
+[node name="TreeR2" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 0, 28)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeR2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeR2"]
+transform = Transform3D(1.95, 0, 0, 0, 1.45, 0, 0, 0, 1.95, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_shadowed")
+
+[node name="TreeR3" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 45)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeR3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeR3"]
+transform = Transform3D(2.1, 0, 0, 0, 1.55, 0, 0, 0, 2.1, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves")
+
+[node name="TreeR4" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62, 0, 18)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeR4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeR4"]
+transform = Transform3D(1.85, 0, 0, 0, 1.4, 0, 0, 0, 1.85, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_shadowed")
+
+[node name="TreeC1" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 48)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeC1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeC1"]
+transform = Transform3D(2.3, 0, 0, 0, 1.65, 0, 0, 0, 2.3, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_lit")
+
+[node name="TreeC2" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 50)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeC2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeC2"]
+transform = Transform3D(2.25, 0, 0, 0, 1.6, 0, 0, 0, 2.25, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves")
+
+[node name="TreeB1" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, 58)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeB1"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeB1"]
+transform = Transform3D(2.0, 0, 0, 0, 1.4, 0, 0, 0, 2.0, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_distant")
+
+[node name="TreeB2" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 60)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeB2"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeB2"]
+transform = Transform3D(2.0, 0, 0, 0, 1.4, 0, 0, 0, 2.0, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_distant")
+
+[node name="TreeB3" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 62)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeB3"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeB3"]
+transform = Transform3D(2.0, 0, 0, 0, 1.4, 0, 0, 0, 2.0, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_distant")
+
+[node name="TreeB4" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 0, 65)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeB4"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeB4"]
+transform = Transform3D(2.0, 0, 0, 0, 1.4, 0, 0, 0, 2.0, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_distant")
+
+[node name="TreeB5" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 0, 68)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeB5"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeB5"]
+transform = Transform3D(2.0, 0, 0, 0, 1.4, 0, 0, 0, 2.0, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_distant")
+
+[node name="TreeB6" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 70)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeB6"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeB6"]
+transform = Transform3D(2.0, 0, 0, 0, 1.4, 0, 0, 0, 2.0, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_distant")
+
+[node name="TreeB7" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 0, 72)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeB7"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeB7"]
+transform = Transform3D(2.0, 0, 0, 0, 1.4, 0, 0, 0, 2.0, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_distant")
+
+[node name="TreeB8" type="Node3D" parent="Trees"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85, 0, 75)
+
+[node name="Trunk" type="MeshInstance3D" parent="Trees/TreeB8"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 2.5, 0)
+mesh = SubResource("CylinderMesh_trunk")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_trunk")
+
+[node name="Leaves" type="MeshInstance3D" parent="Trees/TreeB8"]
+transform = Transform3D(2.0, 0, 0, 0, 1.4, 0, 0, 0, 2.0, 0, 5.5, 0)
+mesh = SubResource("SphereMesh_leaves")
+surface_material_override/0 = SubResource("StandardMaterial3D_tree_leaves_distant")
+
+[node name="Buildings" type="Node3D" parent="."]
+
+[node name="Building1" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 8, 55)
+size = Vector3(12, 16, 8)
+material = SubResource("StandardMaterial3D_building")
+
+[node name="Windows1" type="CSGBox3D" parent="Buildings/Building1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1, 0, 0)
+size = Vector3(0.1, 14, 6)
+material = SubResource("StandardMaterial3D_windows")
+operation = 2
+
+[node name="Building2" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 6, 52)
+size = Vector3(10, 12, 10)
+material = SubResource("StandardMaterial3D_building")
+
+[node name="Windows2" type="CSGBox3D" parent="Buildings/Building2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1, 0, 0)
+size = Vector3(0.1, 10, 8)
+material = SubResource("StandardMaterial3D_windows")
+operation = 2
+
+[node name="Building3" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -85, 10, -35)
+size = Vector3(15, 20, 12)
+material = SubResource("StandardMaterial3D_building")
+
+[node name="Building4" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 58)
+size = Vector3(18, 14, 10)
+material = SubResource("StandardMaterial3D_building")
+
+[node name="Windows4" type="CSGBox3D" parent="Buildings/Building4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.1)
+size = Vector3(14, 12, 0.1)
+material = SubResource("StandardMaterial3D_windows")
+operation = 2
+
+[node name="Building5" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 5, 56)
+size = Vector3(14, 10, 8)
+material = SubResource("StandardMaterial3D_building")
+
+[node name="Building6" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 9, 54)
+size = Vector3(16, 18, 12)
+material = SubResource("StandardMaterial3D_building")
+
+[node name="Building7" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 6, 56)
+size = Vector3(12, 12, 8)
+material = SubResource("StandardMaterial3D_building_tan")
+
+[node name="Building8" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 8, 55)
+size = Vector3(14, 16, 10)
+material = SubResource("StandardMaterial3D_building_gray")
+
+[node name="Building9" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 7, 50)
+size = Vector3(10, 14, 8)
+material = SubResource("StandardMaterial3D_building_brown")
+
+[node name="Building10" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95, 10, 45)
+size = Vector3(12, 20, 12)
+material = SubResource("StandardMaterial3D_building_tan")
+
+[node name="Window10_1" type="CSGBox3D" parent="Buildings/Building10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 6.1)
+size = Vector3(8, 2, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window10_2" type="CSGBox3D" parent="Buildings/Building10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 6.1)
+size = Vector3(8, 2, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Building11" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92, 8, 28)
+size = Vector3(10, 16, 10)
+material = SubResource("StandardMaterial3D_building_gray")
+
+[node name="Window11_1" type="CSGBox3D" parent="Buildings/Building11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 5.1)
+size = Vector3(7, 2.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window11_2" type="CSGBox3D" parent="Buildings/Building11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 5.1)
+size = Vector3(7, 2.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Building12" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88, 6, 15)
+size = Vector3(9, 12, 8)
+material = SubResource("StandardMaterial3D_building")
+
+[node name="Window12_1" type="CSGBox3D" parent="Buildings/Building12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4.1)
+size = Vector3(6, 2, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Building13" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95, 10, 45)
+size = Vector3(12, 20, 12)
+material = SubResource("StandardMaterial3D_building_gray")
+
+[node name="Window13_1" type="CSGBox3D" parent="Buildings/Building13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 6.1)
+size = Vector3(8, 2, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window13_2" type="CSGBox3D" parent="Buildings/Building13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 6.1)
+size = Vector3(8, 2, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Building14" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 92, 8, 28)
+size = Vector3(10, 16, 10)
+material = SubResource("StandardMaterial3D_building_tan")
+
+[node name="Window14_1" type="CSGBox3D" parent="Buildings/Building14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 5.1)
+size = Vector3(7, 2.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window14_2" type="CSGBox3D" parent="Buildings/Building14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 5.1)
+size = Vector3(7, 2.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Building15" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88, 6, 15)
+size = Vector3(9, 12, 8)
+material = SubResource("StandardMaterial3D_building_brown")
+
+[node name="Window15_1" type="CSGBox3D" parent="Buildings/Building15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4.1)
+size = Vector3(6, 2, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Building16" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 12, 70)
+size = Vector3(15, 24, 10)
+material = SubResource("StandardMaterial3D_building_distant")
+
+[node name="Window16_1" type="CSGBox3D" parent="Buildings/Building16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 5.1)
+size = Vector3(10, 3, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window16_2" type="CSGBox3D" parent="Buildings/Building16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.1)
+size = Vector3(10, 3, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window16_3" type="CSGBox3D" parent="Buildings/Building16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 5.1)
+size = Vector3(10, 3, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Building17" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 15, 72)
+size = Vector3(18, 30, 12)
+material = SubResource("StandardMaterial3D_building_distant")
+
+[node name="Window17_1" type="CSGBox3D" parent="Buildings/Building17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 6.1)
+size = Vector3(12, 3.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window17_2" type="CSGBox3D" parent="Buildings/Building17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.1)
+size = Vector3(12, 3.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window17_3" type="CSGBox3D" parent="Buildings/Building17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 6.1)
+size = Vector3(12, 3.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Building18" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 10, 68)
+size = Vector3(14, 20, 9)
+material = SubResource("StandardMaterial3D_building_brown")
+
+[node name="Window18_1" type="CSGBox3D" parent="Buildings/Building18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4.6)
+size = Vector3(9, 2.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window18_2" type="CSGBox3D" parent="Buildings/Building18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 4.6)
+size = Vector3(9, 2.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Building19" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 10, 68)
+size = Vector3(14, 20, 9)
+material = SubResource("StandardMaterial3D_building_mid_distant")
+
+[node name="Window19_1" type="CSGBox3D" parent="Buildings/Building19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4.6)
+size = Vector3(9, 2.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window19_2" type="CSGBox3D" parent="Buildings/Building19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 4.6)
+size = Vector3(9, 2.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Building20" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 15, 72)
+size = Vector3(18, 30, 12)
+material = SubResource("StandardMaterial3D_building_distant")
+
+[node name="Window20_1" type="CSGBox3D" parent="Buildings/Building20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 6.1)
+size = Vector3(12, 3.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window20_2" type="CSGBox3D" parent="Buildings/Building20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.1)
+size = Vector3(12, 3.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window20_3" type="CSGBox3D" parent="Buildings/Building20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 6.1)
+size = Vector3(12, 3.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Building21" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 12, 70)
+size = Vector3(15, 24, 10)
+material = SubResource("StandardMaterial3D_building_distant")
+
+[node name="Window21_1" type="CSGBox3D" parent="Buildings/Building21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 5.1)
+size = Vector3(10, 3, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window21_2" type="CSGBox3D" parent="Buildings/Building21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.1)
+size = Vector3(10, 3, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window21_3" type="CSGBox3D" parent="Buildings/Building21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 5.1)
+size = Vector3(10, 3, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Building22" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 70)
+size = Vector3(20, 26, 11)
+material = SubResource("StandardMaterial3D_building_mid_distant")
+
+[node name="Window22_1" type="CSGBox3D" parent="Buildings/Building22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 5.6)
+size = Vector3(14, 3, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window22_2" type="CSGBox3D" parent="Buildings/Building22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.6)
+size = Vector3(14, 3, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window22_3" type="CSGBox3D" parent="Buildings/Building22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 5.6)
+size = Vector3(14, 3, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Building23" type="CSGBox3D" parent="Buildings"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 10, 68)
+size = Vector3(12, 20, 8)
+material = SubResource("StandardMaterial3D_building")
+
+[node name="Window23_1" type="CSGBox3D" parent="Buildings/Building23"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4.1)
+size = Vector3(8, 2.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="Window23_2" type="CSGBox3D" parent="Buildings/Building23"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 4.1)
+size = Vector3(8, 2.5, 0.5)
+material = SubResource("StandardMaterial3D_windows")
+
+[node name="ParkFurniture" type="Node3D" parent="."]
+
+[node name="Bench1" type="Node3D" parent="ParkFurniture"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -40, 0, -10)
+
+[node name="Seat" type="CSGBox3D" parent="ParkFurniture/Bench1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+size = Vector3(2, 0.1, 0.5)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Back" type="CSGBox3D" parent="ParkFurniture/Bench1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.25)
+size = Vector3(2, 0.6, 0.1)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Leg1" type="CSGBox3D" parent="ParkFurniture/Bench1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Leg2" type="CSGBox3D" parent="ParkFurniture/Bench1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Bench2" type="Node3D" parent="ParkFurniture"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 40, 0, -10)
+
+[node name="Seat" type="CSGBox3D" parent="ParkFurniture/Bench2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+size = Vector3(2, 0.1, 0.5)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Back" type="CSGBox3D" parent="ParkFurniture/Bench2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.25)
+size = Vector3(2, 0.6, 0.1)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Leg1" type="CSGBox3D" parent="ParkFurniture/Bench2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Leg2" type="CSGBox3D" parent="ParkFurniture/Bench2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Bench3" type="Node3D" parent="ParkFurniture"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -40, 0, 0)
+
+[node name="Seat" type="CSGBox3D" parent="ParkFurniture/Bench3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+size = Vector3(2, 0.1, 0.5)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Back" type="CSGBox3D" parent="ParkFurniture/Bench3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.25)
+size = Vector3(2, 0.6, 0.1)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Leg1" type="CSGBox3D" parent="ParkFurniture/Bench3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Leg2" type="CSGBox3D" parent="ParkFurniture/Bench3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Bench4" type="Node3D" parent="ParkFurniture"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 40, 0, 0)
+
+[node name="Seat" type="CSGBox3D" parent="ParkFurniture/Bench4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+size = Vector3(2, 0.1, 0.5)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Back" type="CSGBox3D" parent="ParkFurniture/Bench4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.25)
+size = Vector3(2, 0.6, 0.1)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Leg1" type="CSGBox3D" parent="ParkFurniture/Bench4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Leg2" type="CSGBox3D" parent="ParkFurniture/Bench4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Bench5" type="Node3D" parent="ParkFurniture"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -40, 0, 10)
+
+[node name="Seat" type="CSGBox3D" parent="ParkFurniture/Bench5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+size = Vector3(2, 0.1, 0.5)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Back" type="CSGBox3D" parent="ParkFurniture/Bench5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.25)
+size = Vector3(2, 0.6, 0.1)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Leg1" type="CSGBox3D" parent="ParkFurniture/Bench5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Leg2" type="CSGBox3D" parent="ParkFurniture/Bench5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Bench6" type="Node3D" parent="ParkFurniture"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 40, 0, 10)
+
+[node name="Seat" type="CSGBox3D" parent="ParkFurniture/Bench6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+size = Vector3(2, 0.1, 0.5)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Back" type="CSGBox3D" parent="ParkFurniture/Bench6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.25)
+size = Vector3(2, 0.6, 0.1)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Leg1" type="CSGBox3D" parent="ParkFurniture/Bench6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Leg2" type="CSGBox3D" parent="ParkFurniture/Bench6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Bench7" type="Node3D" parent="ParkFurniture"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -40, 0, 20)
+
+[node name="Seat" type="CSGBox3D" parent="ParkFurniture/Bench7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+size = Vector3(2, 0.1, 0.5)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Back" type="CSGBox3D" parent="ParkFurniture/Bench7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.25)
+size = Vector3(2, 0.6, 0.1)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Leg1" type="CSGBox3D" parent="ParkFurniture/Bench7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Leg2" type="CSGBox3D" parent="ParkFurniture/Bench7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Bench8" type="Node3D" parent="ParkFurniture"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 40, 0, 20)
+
+[node name="Seat" type="CSGBox3D" parent="ParkFurniture/Bench8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+size = Vector3(2, 0.1, 0.5)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Back" type="CSGBox3D" parent="ParkFurniture/Bench8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.25)
+size = Vector3(2, 0.6, 0.1)
+material = SubResource("StandardMaterial3D_bench")
+
+[node name="Leg1" type="CSGBox3D" parent="ParkFurniture/Bench8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Leg2" type="CSGBox3D" parent="ParkFurniture/Bench8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="ParkingLot" type="Node3D" parent="."]
+script = ExtResource("4_parked_cars")
+
+[node name="Pavement" type="CSGBox3D" parent="ParkingLot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 58)
+size = Vector3(80, 0.02, 8)
+material = SubResource("StandardMaterial3D_pavement")
+
+[node name="BuildingShadows" type="Node3D" parent="."]
+script = ExtResource("6_building_shadows")
+
+[node name="Street" type="Node3D" parent="."]
+script = ExtResource("2_moving_cars")
+
+[node name="Road" type="CSGBox3D" parent="Street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 63)
+size = Vector3(120, 0.02, 6)
+material = SubResource("StandardMaterial3D_road")
+
+[node name="YellowLine" type="CSGBox3D" parent="Street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 63)
+size = Vector3(120, 0.01, 0.15)
+material = SubResource("StandardMaterial3D_yellow")
+
+[node name="WhiteLine1" type="CSGBox3D" parent="Street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 60.5)
+size = Vector3(120, 0.01, 0.1)
+material = SubResource("StandardMaterial3D_white_line")
+
+[node name="WhiteLine2" type="CSGBox3D" parent="Street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 65.5)
+size = Vector3(120, 0.01, 0.1)
+material = SubResource("StandardMaterial3D_white_line")
+
+[node name="TrafficLight1" type="Node3D" parent="Street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 61)
+
+[node name="Pole" type="CSGCylinder3D" parent="Street/TrafficLight1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+radius = 0.1
+height = 4.0
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Box" type="CSGBox3D" parent="Street/TrafficLight1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+size = Vector3(0.4, 1.2, 0.3)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="RedLight" type="CSGSphere3D" parent="Street/TrafficLight1/Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0.2)
+radius = 0.15
+material = SubResource("StandardMaterial3D_red_light")
+
+[node name="TrafficLight2" type="Node3D" parent="Street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 65)
+
+[node name="Pole" type="CSGCylinder3D" parent="Street/TrafficLight2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+radius = 0.1
+height = 4.0
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Box" type="CSGBox3D" parent="Street/TrafficLight2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+size = Vector3(0.4, 1.2, 0.3)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="GreenLight" type="CSGSphere3D" parent="Street/TrafficLight2/Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0.2)
+radius = 0.15
+material = SubResource("StandardMaterial3D_green_light")
+
+[node name="TrafficLight3" type="Node3D" parent="Street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 61)
+
+[node name="Pole" type="CSGCylinder3D" parent="Street/TrafficLight3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+radius = 0.1
+height = 4.0
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Box" type="CSGBox3D" parent="Street/TrafficLight3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+size = Vector3(0.4, 1.2, 0.3)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="RedLight" type="CSGSphere3D" parent="Street/TrafficLight3/Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0.2)
+radius = 0.15
+material = SubResource("StandardMaterial3D_red_light")
+
+[node name="TrafficLight4" type="Node3D" parent="Street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 65)
+
+[node name="Pole" type="CSGCylinder3D" parent="Street/TrafficLight4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+radius = 0.1
+height = 4.0
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Box" type="CSGBox3D" parent="Street/TrafficLight4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+size = Vector3(0.4, 1.2, 0.3)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="GreenLight" type="CSGSphere3D" parent="Street/TrafficLight4/Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0.2)
+radius = 0.15
+material = SubResource("StandardMaterial3D_green_light")
+
+[node name="Sidewalk1" type="CSGBox3D" parent="Street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 59)
+size = Vector3(120, 0.3, 1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="Sidewalk2" type="CSGBox3D" parent="Street"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 67)
+size = Vector3(120, 0.3, 1)
+material = SubResource("StandardMaterial3D_fence")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_default")
+
+[node name="Sky" type="Node3D" parent="."]
+script = ExtResource("3_moving_clouds")
+
+[node name="Sun" type="CSGSphere3D" parent="Sky"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 32, 25)
+radius = 4.5
+radial_segments = 48
+rings = 24
+material = SubResource("StandardMaterial3D_sun")
+
+[node name="Cloud1" type="CSGSphere3D" parent="Sky"]
+transform = Transform3D(3, 0, 0, 0, 1.5, 0, 0, 0, 2, -30, 30, 25)
+radius = 3.0
+material = SubResource("StandardMaterial3D_cloud")
+cast_shadow = 0
+
+[node name="Cloud2" type="CSGSphere3D" parent="Sky"]
+transform = Transform3D(2.5, 0, 0, 0, 1.2, 0, 0, 0, 1.8, -25, 32, 22)
+radius = 3.0
+material = SubResource("StandardMaterial3D_cloud")
+cast_shadow = 0
+
+[node name="Cloud3" type="CSGSphere3D" parent="Sky"]
+transform = Transform3D(3.5, 0, 0, 0, 1.5, 0, 0, 0, 2.2, 15, 28, 30)
+radius = 3.0
+material = SubResource("StandardMaterial3D_cloud")
+cast_shadow = 0
+
+[node name="Cloud4" type="CSGSphere3D" parent="Sky"]
+transform = Transform3D(2.8, 0, 0, 0, 1.3, 0, 0, 0, 2, 20, 29, 28)
+radius = 3.0
+material = SubResource("StandardMaterial3D_cloud")
+
+[node name="Cloud5" type="CSGSphere3D" parent="Sky"]
+transform = Transform3D(3.2, 0, 0, 0, 1.4, 0, 0, 0, 2.1, -45, 31, 18)
+radius = 3.0
+material = SubResource("StandardMaterial3D_cloud")
+
+[node name="Cloud6" type="CSGSphere3D" parent="Sky"]
+transform = Transform3D(2.6, 0, 0, 0, 1.2, 0, 0, 0, 1.9, 35, 27, 24)
+radius = 3.0
+material = SubResource("StandardMaterial3D_cloud")
+
+[node name="Cloud7" type="CSGSphere3D" parent="Sky"]
+transform = Transform3D(3.0, 0, 0, 0, 1.5, 0, 0, 0, 2.0, -10, 33, 26)
+radius = 3.0
+material = SubResource("StandardMaterial3D_cloud")
+
+[node name="Cloud8" type="CSGSphere3D" parent="Sky"]
+transform = Transform3D(2.9, 0, 0, 0, 1.35, 0, 0, 0, 2.05, 50, 30, 20)
+radius = 3.0
+material = SubResource("StandardMaterial3D_cloud")
+cast_shadow = 0

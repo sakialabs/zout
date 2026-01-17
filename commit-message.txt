@@ -1,0 +1,15 @@
+feat: Add visual polish - building shadows, tree depth, and timing fix
+
+Environment Enhancements:
+- Building shadows now match base colors (darker shades of brown/beige/gray)
+- Added 8 background trees with lighter colors for depth perception
+- Created 3 tree material variations (shadowed/lit/normal) for visual depth
+- Trees behind others use darker greens to show layering
+
+Gameplay Fix:
+- Increased zout delay from 0.1s to 0.4s so ball visually enters goal first
+
+Technical:
+- building_shadows.gd: Dynamic shadow color generation from building materials
+- practice_mode.tscn: TreeB1-B8 added at Z:58-75 with distant materials
+- feedback_manager.gd: ZOUT_AUDIO_DELAY adjusted to 0.4s

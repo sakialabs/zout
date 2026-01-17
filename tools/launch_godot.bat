@@ -1,0 +1,3 @@
+@echo off
+echo Starting Godot 4.3...
+C:\Godot\Godot_v4.3-stable_win64.exe --path "%~dp0" %*

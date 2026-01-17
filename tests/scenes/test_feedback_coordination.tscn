@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://feedback_coordination_test"]
+
+[ext_resource type="Script" path="res://tests/test_feedback_coordination.gd" id="1_feedback_test"]
+
+[node name="FeedbackCoordinationTest" type="Node"]
+script = ExtResource("1_feedback_test")

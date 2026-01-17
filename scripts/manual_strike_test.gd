@@ -1,0 +1,51 @@
+extends Node
+
+## Manual Strike Flow Test
+## Task 11: Checkpoint - Core mechanics validation
+## Run this from the Godot editor to test the complete strike flow
+
+func _ready() -> void:
+	print("\n=== MANUAL STRIKE FLOW TEST ===\n")
+	print("This script validates the core mechanics integration.")
+	print("\nInstructions:")
+	print("1. Open the Practice Mode scene (scenes/practice_mode.tscn)")
+	print("2. Run the scene (F5)")
+	print("3. Test the following:")
+	print("")
+	print("   STRIKE FLOW TEST:")
+	print("   • Press WASD or Arrow keys to aim")
+	print("   • Hold SPACE to charge power")
+	print("   • Release SPACE to strike")
+	print("   • Observe ball flight and goal detection")
+	print("")
+	print("   CONTACT QUALITY TEST:")
+	print("   • Try releasing at different power levels")
+	print("   • Early release (< 50%) should feel weak/scuffed")
+	print("   • Optimal release (90-100%) should feel perfect")
+	print("   • Observe ball drift based on timing")
+	print("")
+	print("   GOAL DETECTION TEST:")
+	print("   • Aim at goal center - should trigger goal")
+	print("   • Aim outside goal - should miss")
+	print("   • Aim at top corners - should trigger Top Bins")
+	print("")
+	print("   RESET TEST:")
+	print("   • Press R at any time to reset")
+	print("   • Ball should return to start position")
+	print("")
+	print("Expected Behavior:")
+	print("✓ Aim responds immediately to input")
+	print("✓ Power charges smoothly over 1.5 seconds")
+	print("✓ Ball launches with appropriate speed/direction")
+	print("✓ Contact quality affects ball drift:")
+	print("  - Perfect: No drift")
+	print("  - Clean: Minimal drift (≤2°)")
+	print("  - Okay: Moderate drift (≤5°)")
+	print("  - Scuffed: High drift (≤10°)")
+	print("✓ Goal detection triggers when ball crosses goal line")
+	print("✓ Top Bins triggers in top corners")
+	print("✓ Reset (R key) returns to ready state")
+	print("\n==============================\n")
+	
+	# Don't quit - let user test manually
+	print("Ready for manual testing. Open Practice Mode scene and press F5.")

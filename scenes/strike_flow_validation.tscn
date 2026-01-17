@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://strike_flow_validation"]
+
+[ext_resource type="Script" path="res://scripts/strike_flow_validator.gd" id="1_validator"]
+[ext_resource type="Script" path="res://scripts/ball_physics.gd" id="2_ball"]
+[ext_resource type="Script" path="res://scripts/goal_detector.gd" id="3_goal"]
+[ext_resource type="Script" path="res://scripts/strike_controller.gd" id="4_controller"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pitch"]
+size = Vector2(50, 80)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pitch"]
+albedo_color = Color(0.2, 0.6, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pitch"]
+size = Vector3(50, 0.1, 80)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ball"]
+radius = 0.11
+height = 0.22
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ball"]
+radius = 0.11
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_goal"]
+size = Vector3(7.32, 2.44, 0.5)
+
+[sub_resource type="Environment" id="Environment_default"]
+background_mode = 1
+background_color = Color(0.5, 0.7, 0.9, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.5
+
+[node name="StrikeFlowValidation" type="Node3D"]
+script = ExtResource("1_validator")
+
+[node name="Pitch" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_pitch")
+surface_material_override/0 = SubResource("StandardMaterial3D_pitch")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Pitch"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pitch/StaticBody3D"]
+shape = SubResource("BoxShape3D_pitch")
+
+[node name="Ball" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -20)
+mass = 0.43
+gravity_scale = 1.0
+script = ExtResource("2_ball")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
+mesh = SubResource("SphereMesh_ball")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+shape = SubResource("SphereShape3D_ball")
+
+[node name="GoalDetector" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22, 40)
+script = ExtResource("3_goal")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalDetector"]
+shape = SubResource("BoxShape3D_goal")
+
+[node name="StrikeController" type="Node" parent="."]
+script = ExtResource("4_controller")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 5, -25)
+fov = 75.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 0)
+light_energy = 1.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_default")

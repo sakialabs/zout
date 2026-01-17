@@ -1,0 +1,86 @@
+[gd_scene load_steps=11 format=3 uid="uid://feedback_validation_test"]
+
+[ext_resource type="Script" path="res://tests/integration/test_feedback_validation.gd" id="1_feedback_test"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pitch"]
+size = Vector2(50, 80)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pitch"]
+albedo_color = Color(0.2, 0.6, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pitch"]
+size = Vector3(50, 0.1, 80)
+
+[sub_resource type="BoxMesh" id="BoxMesh_goal"]
+size = Vector3(7.32, 2.44, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_goal"]
+albedo_color = Color(1, 1, 1, 0.3)
+transparency = 1
+
+[sub_resource type="SphereMesh" id="SphereMesh_ball"]
+radius = 0.11
+height = 0.22
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ball"]
+albedo_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ball"]
+radius = 0.11
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_goal"]
+size = Vector3(7.32, 2.44, 0.5)
+
+[sub_resource type="Environment" id="Environment_default"]
+background_mode = 1
+background_color = Color(0.5, 0.7, 0.9, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.5
+
+[node name="FeedbackValidationTest" type="Node3D"]
+script = ExtResource("1_feedback_test")
+
+[node name="Pitch" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_pitch")
+surface_material_override/0 = SubResource("StandardMaterial3D_pitch")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Pitch"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pitch/StaticBody3D"]
+shape = SubResource("BoxShape3D_pitch")
+
+[node name="Goal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22, 40)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Goal"]
+mesh = SubResource("BoxMesh_goal")
+surface_material_override/0 = SubResource("StandardMaterial3D_goal")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Goal"]
+shape = SubResource("BoxShape3D_goal")
+
+[node name="Ball" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -20)
+mass = 0.43
+gravity_scale = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
+mesh = SubResource("SphereMesh_ball")
+surface_material_override/0 = SubResource("StandardMaterial3D_ball")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+shape = SubResource("SphereShape3D_ball")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 5, -25)
+fov = 75.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 0)
+light_energy = 1.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_default")
