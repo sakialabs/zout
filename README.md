@@ -109,7 +109,7 @@ This is composure.
 
 ---
 
-### 🎯 Free Kick
+### 🧱 Free Kick
 
 Wall set.  
 Keeper ready.  
@@ -236,15 +236,15 @@ Just the strike ⚽
 Early development.  
 Currently locking the core strike feel in **Practice mode**.
 
----
-
-## 🌱 Why Zout Exists
-
-For the joy of zout.  
-The strike you hit once and think about all day.
+Next up: Zout logic (audio, camera, scoring).
 
 ---
 
 ## 📄 License
 
 MIT
+
+---
+
+Made with 💖 for the joy of zout.  
+The strike you hit once and think about all day.

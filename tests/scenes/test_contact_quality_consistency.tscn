@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d9z4m6p0r2vxy"]
+
+[ext_resource type="Script" path="res://tests/property/test_contact_quality_consistency.gd" id="1_test"]
+
+[node name="TestContactQualityConsistency" type="Node"]
+script = ExtResource("1_test")

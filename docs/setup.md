@@ -52,8 +52,7 @@ zout/
 │   ├── aim_system.gd
 │   ├── power_system.gd
 │   └── timing_system.gd
-├── docs/                # Documentation
-└── .kiro/specs/         # Feature specs
+└── docs/                # Documentation
 ```
 
 ---

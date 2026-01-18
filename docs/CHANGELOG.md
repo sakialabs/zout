@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [1.0.0] - 2026-01-16 - MVP RELEASE 🚀
 
 ### Added
+
 - Complete strike mechanics (aim, power, timing with 4 quality levels)
 - Ball physics with quality-based drift and speed
 - Goal detection with Zout confirmation and Top Bins recognition
@@ -22,18 +23,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Camera feedback (push-in, shake, slowmo at 0.7x)
 - UI feedback (power bar, score popup, stats panel)
 - Build automation script for Windows/Linux/macOS
+- **Comprehensive test suite (Tasks 3.1, 3.2, 4.1, 5.1, 6.1) - 2026-01-17**
 
 ### Changed
+
 - Tuned camera effects for subtlety (shake 0.08, push 0.3m)
 - Optimized feedback timing (score delay 0.25s, holds 0.25s/0.35s)
 - Polished UI visuals (vibrant green power bar, minimal design)
 
 ### Technical
+
 - All 28 mandatory tasks completed
 - All 12 requirements validated (64/64 acceptance criteria)
 - State machine with 7 phases
 - Error handling and failsafes implemented
 - Performance target: 60 FPS
+- **Test coverage: 5 new test suites with 80+ individual test cases**
 
 ---
 
@@ -132,5 +137,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - See `docs/roadmap.md` for full development plan
 - See `docs/testing.md` for testing procedures
+- See `docs/design.md` for design specifications
+- See `docs/requirements.md` for requirement details
 - See `tests/README.md` for test organization
-- See `.kiro/specs/practice-mode-mvp/` for detailed requirements and design

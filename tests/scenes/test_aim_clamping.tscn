@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://e1a5n7q3s4wyz"]
+
+[ext_resource type="Script" path="res://tests/unit/test_aim_clamping.gd" id="1_test"]
+
+[node name="TestAimClamping" type="Node"]
+script = ExtResource("1_test")
